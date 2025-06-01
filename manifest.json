@@ -1,0 +1,49 @@
+{
+  "id": "remnote-browser",
+  "description": "Embed a fully functional web browser inside RemNote with navigation controls, history, and secure iframe isolation",
+  "author": "RemNote Browser Plugin Developer",
+  "repoUrl": "https://github.com/bparso10/remote-browser",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "manifest_version": 3,
+  "name": "RemNote Browser Extension",
+  "version": "1.0.0",
+  "description": "A RemNote plugin for browser functionality",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.remnote.com/*"
+  ],
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.remnote.com/*"],
+      "js": ["dist/content.js"],
+      "css": ["dist/content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "dist/popup.html",
+    "default_title": "RemNote Browser"
+  },
+  "icons": {
+    "16": "public/icon-16.png",
+    "48": "public/icon-48.png",
+    "128": "public/icon-128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dist/*"],
+      "matches": ["https://*.remnote.com/*"]
+    }
+  ]
+}
